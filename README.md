@@ -1,6 +1,6 @@
 #  natagaming (Experimental. Fase hardware)
 
- —optimiza tu sistema automáticamente al detectar juegos y lo restaura al salir. (precausion, no ejecutar con permisos sudo.)
+ —optimiza tu sistema automáticamente al detectar juegos y lo restaura al salir. (precaucion, no ejecutar con permisos sudo.)
 
  # version.
 
@@ -8,7 +8,7 @@
 
 ## ¿Qué hace?
 
-en el archivo de configuracion setecta los archivos y ventanas especificas que deberia correr con el modo de optimizacion, luego: 
+en el archivo de configuracion detecta los archivos y ventanas especificas que deberia correr con el modo de optimizacion, luego: 
 
 - Desactiva blur, sombras y animaciones en Hyprland para liberar GPU
 - Cambia el perfil de CPU a rendimiento máximo (`performance` governor o `powerprofilesctl`)
