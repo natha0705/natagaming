@@ -1,0 +1,60 @@
+# ╔════════════════════════════════════════════════════╗
+# ║ natagaming.conf                                   ║
+# ╚════════════════════════════════════════════════════╝
+#
+# Hot-reload: kill -HUP $(cat $XDG_RUNTIME_DIR/natagaming/natagaming.pid)
+#
+# NOTA: los arrays usan formato pipe-separated, NO bash syntax:
+#   CLAVE=valor1|valor2|valor3
+#
+# ── General ──────────────────────────────────────────
+
+LOG_LEVEL=info
+DEBOUNCE_MS=120
+NOTIFY_TIMEOUT=2500
+
+# ── Gamescope ────────────────────────────────────────
+
+GAMING_TTY=2
+GAMESCOPE_RES=1920x1080
+GAMESCOPE_HZ=144
+
+# Flags extra opcionales para gamescope (pipe-separated)
+GAMESCOPE_FLAGS=--hdr-enabled|--immediate-flips
+
+# ── Música ───────────────────────────────────────────
+
+ENABLE_MPV=1
+PLAYLIST=https://www.youtube.com/watch?v=dDd-EkT5tuw&list=RDdDd-EkT5tuw&start_radio=1
+
+# ── Integraciones ────────────────────────────────────
+
+ENABLE_WAYBAR=1
+ENABLE_SPOTIFY_PAUSE=1
+ENABLE_CPU_GOVERNOR=1
+
+# ── Proton/Wine ──────────────────────────────────────
+
+# Vacío = autodetect
+PROTON_PATH=
+
+STEAM_COMPAT_DATA_PATH=/home/USER/.steam-proton-prefix
+STEAM_COMPAT_CLIENT_INSTALL_PATH=/home/USER/.steam/root
+
+# ── Detección de juegos ──────────────────────────────
+# Valores son regex POSIX/grep -E, separados por |
+
+# Apps que SÍ activan modo feroz
+GAMING_WINDOW_CLASSES=steam_app_[0-9]+|cs2|hl2_linux|Minecraft|heroic|lutris|wine|Lunar Client.*|Roblox|roblox|[Ss]ober
+
+# Apps fullscreen que deben ignorarse (nunca activan modo feroz)
+IGNORE_WINDOW_CLASSES=firefox|Brave-browser|google-chrome|chromium|mpv|vlc|obs|discord|Spotify
+
+# Apps para lanzar en TTY dedicada (pipe-separated entre entradas)
+# Formato de cada entrada: nombre:tty:comando
+# Ejemplo: TTY_APPS=retroarch:3:retroarch -f|dosbox:4:dosbox /games/doom
+TTY_APPS=
+
+# ── Config avanzada ──────────────────────────────────
+
+CONFIG_VERSION=2

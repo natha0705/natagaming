@@ -1,0 +1,39 @@
+[Unit]
+Description=Natagaming — Tier S Gaming Daemon
+After=graphical-session.target
+Wants=graphical-session.target
+
+[Service]
+Type=simple
+WorkingDirectory=%h
+
+# Espera activa al socket de Hyprland (máx ~30 s antes de fallar)
+ExecStartPre=/usr/bin/bash -lc '\
+    i=0; \
+    until [ -S "$XDG_RUNTIME_DIR/hypr/$HYPRLAND_INSTANCE_SIGNATURE/.socket2.sock" ]; do \
+        sleep 0.5; \
+        i=$(( i + 1 )); \
+        [ "$i" -ge 60 ] && { echo "natagaming: timeout esperando socket Hyprland" >&2; exit 1; }; \
+    done'
+
+ExecStart=/usr/bin/python3 %h/.local/bin/natagaming.py auto
+
+Restart=on-failure
+RestartSec=3
+
+Environment=XDG_RUNTIME_DIR=/run/user/%U
+PassEnvironment=HYPRLAND_INSTANCE_SIGNATURE DISPLAY WAYLAND_DISPLAY DBUS_SESSION_BUS_ADDRESS
+
+# Solo exit 0 es éxito limpio (exit 1 puede ser "ya corre", se reinicia)
+SuccessExitStatus=0
+
+StandardOutput=journal
+StandardError=journal
+SyslogIdentifier=natagaming
+
+# Hardening mínimo compatible con user service
+PrivateTmp=true
+NoNewPrivileges=false
+
+[Install]
+WantedBy=default.target
