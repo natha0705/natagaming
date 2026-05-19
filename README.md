@@ -1,6 +1,10 @@
-#  natagaming
+#  natagaming (Experimental. Fase hardware)
 
  —optimiza tu sistema automáticamente al detectar juegos y lo restaura al salir. (precausion, no ejecutar con permisos sudo.)
+
+ # version.
+
+ Esta es una version experimental del script, no es una version definitiva ni mucho menos. No tengo recursos para probarla, romper el script ni buscar bugs. agradeceria a la comunidad que me ayudara a testear esto con equipos de gama baja y mandar los resultados a "nathanaeltmy@gmail.com" tanto bugs como si es posible resultados positivos. El script por el momento solo es soportado por arch linux en hyprland. si el proyecto tiene exito agregare posteriormente compatibilidad con otras distros y windows managers.
 
 ## ¿Qué hace?
 
